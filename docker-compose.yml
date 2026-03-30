@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: nail_shop_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: nail-shop
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: nail_shop_wp
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: nail_shop
+    volumes:
+      - .:/var/www/html
+
+volumes:
+  db_data:
