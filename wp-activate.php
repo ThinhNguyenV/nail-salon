@@ -65,6 +65,7 @@ if ( null === $result || ( is_wp_error( $result ) && 'invalid_key' === $result->
 nocache_headers();
 
 // Fix for page title.
+global $wp_query;
 $wp_query->is_404 = false;
 
 /**
