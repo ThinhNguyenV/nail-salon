@@ -25,31 +25,6 @@
     }
 </style>
 
-<script>
-    function createHeartUp() {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤';
-        heart.className = 'heart-up';
-        
-        heart.style.left = Math.random() * 100 + 'vw';
-        
-        const size = Math.random() * 15 + 10 + 'px';
-        heart.style.fontSize = size;
-        
-        const duration = Math.random() * 3 + 5; 
-        heart.style.animationDuration = duration + 's';
-        
-        heart.style.opacity = Math.random() * 0.5 + 0.3;
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, duration * 1000);
-    }
-
-    setInterval(createHeartUp, 400);
-</script>
 <footer class="elux-footer">
     <div class="container text-center">
         <!-- Logo -->

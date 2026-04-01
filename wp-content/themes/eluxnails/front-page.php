@@ -7,7 +7,7 @@ get_header();
 $img = get_template_directory_uri() . '/assets/images';
 ?>
 
-<main>
+<main data-page="home">
 
     <!-- ===== Hero Section ===== -->
     <section class="hero-section">

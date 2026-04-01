@@ -4,6 +4,7 @@
 
 /* ----- CSS Variables ----- */
 :root {
+  --navbar-h: 65px;        /* Chiều cao navbar desktop */
   --elux-pink-light: #fff5f7;
   --elux-pink-soft: #ffdde2;
   --elux-pink-primary: #d68c96;
@@ -66,6 +67,56 @@ section {
   transition: all 0.3s ease;
 }
 
+/* Fix navbar mobile/tablet */
+@media (max-width: 991.98px) {
+  :root { --navbar-h: 60px; }
+
+  .elux-navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Container: 1 hàng duy nhất — brand bên trái, toggler bên phải */
+  .elux-navbar .container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    min-height: 60px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .elux-navbar .navbar-brand {
+    flex: 0 0 auto;
+    margin-right: auto;
+    padding: 10px 0;
+  }
+
+  /* Thu nhỏ brand-name để vừa 1 hàng với toggler */
+  .brand-name {
+    font-size: 1.3rem !important;
+  }
+
+  .brand-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .elux-navbar .navbar-toggler {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    margin-left: 8px;
+  }
+
+  /* Collapse menu xuống hàng mới, full width */
+  .elux-navbar .navbar-collapse {
+    flex-basis: 100%;
+    order: 3;
+    width: 100%;
+  }
+}
+
 .elux-navbar.scrolled {
   background-color: rgba(255, 245, 247, 0.97);
   box-shadow: 0 2px 20px rgba(214, 140, 150, 0.12);
@@ -112,8 +163,8 @@ section {
 .hero-section {
   margin-top: 0;
   background-color: var(--elux-hero-bg);
-  padding: 140px 0 60px;
-  min-height: 480px;
+  padding: calc(var(--navbar-h) + 60px) 0 60px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
 }
@@ -281,7 +332,7 @@ section {
 
 /* ----- About / What We Offer Section ----- */
 .about-section {
-  padding: 40px 0 60px;
+  padding: 80px 0 40px;
 }
 
 .about-label {
@@ -298,18 +349,20 @@ section {
 }
 
 .about-desc {
+  padding-top: 10px; 
   color: var(--elux-text-light);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   line-height: 1.8;
 }
 
 /* ----- Services Cards ----- */
 .services-section {
-  padding: 0 0 80px;
+  padding: 80px 0 80px;
   background-color: var(--elux-pink-light);
 }
 
 .service-card {
+  margin-bottom: 30px;
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -506,6 +559,14 @@ section {
 }
 
 @media (max-width: 575.98px) {
+  .hero-section {
+    padding: 80px 0 30px !important;
+  }
+
+  .hero-text h1 {
+    font-size: 1.6rem !important;
+  }
+
   .gallery-swiper .swiper-slide img {
     height: 180px;
   }
@@ -914,6 +975,22 @@ section {
   section {
     padding: 50px 0;
   }
+
+  /* Hero override — đủ chỗ cho navbar collapsed */
+  .hero-section {
+    padding: 130px 0 50px !important;
+    min-height: auto !important;
+  }
+
+  /* Hero text stack — hiển thị đầy đủ khi col-lg stack */
+  .hero-text {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .hero-text .btn-hero {
+    display: inline-block;
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -925,9 +1002,14 @@ section {
     padding: 50px 0;
   }
 
+  /* Navbar mobile ~60px — padding-top = navbar + khoảng thở */
   .hero-section {
-    padding: 40px 0;
-    min-height: auto;
+    padding: 80px 0 40px !important;
+    min-height: auto !important;
+  }
+
+  .hero-text {
+    text-align: center;
   }
 
   .hero-text h1 {
@@ -935,7 +1017,7 @@ section {
   }
 
   .hero-image {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   .gallery-grid {
@@ -1142,7 +1224,7 @@ section {
 .services-section {
   background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 50%, #fff0f3 100%);
   position: relative;
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 .services-section::before {
@@ -1307,4 +1389,57 @@ section {
 .nail3d-color-btn.active {
   transform: scale(1.25);
   border-color: #fff;
+}
+
+.services-section .row {
+  align-items: stretch !important;
+}
+
+.services-section .col-md-4 {
+  display: flex;
+}
+
+.service-card {
+  display: flex !important;
+  flex-direction: column;
+  width: 100%;
+}
+
+.service-card-img {
+  flex-shrink: 0;
+}
+
+.service-card-img img {
+  height: 260px !important;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.service-card h5,
+.service-card p {
+  flex-shrink: 0;
+}
+
+.service-card p {
+  flex-grow: 1;
+}
+/* ===== FIX: Homepage overflow trên mobile ===== */
+
+/* Fix canvas 3D tràn ra ngoài trên mobile */
+#nail3d-canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+.nail3d-canvas-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Fix tổng thể — ngăn bất kỳ element nào tràn ngang */
+main[data-page="home"] {
+  overflow-x: hidden;
 }

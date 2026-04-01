@@ -7,7 +7,7 @@ get_header();
 $shop = get_template_directory_uri() . '/shop_imgs';
 ?>
 
-<main>
+<main data-page="gallery">
 
     <!-- Page Header -->
     <div class="page-header">

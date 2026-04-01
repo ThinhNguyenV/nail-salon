@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<main>
+<main data-page="contact">
 
     <!-- Contact Banner -->
     <div class="contact-banner">
