@@ -10,6 +10,17 @@
         animation: fly-up linear forwards;
     }
 
+    .footer-link {
+        color: inherit;
+        text-decoration: underline;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+    }
+    .footer-link:hover {
+        opacity: 1;
+        color: inherit;
+    }
+
     @keyframes fly-up {
         0% {
             transform: translateY(0) translateX(0) rotate(0deg);
@@ -41,27 +52,42 @@
 
         <!-- Contact Info Row -->
         <div class="row justify-content-center mt-4 mb-4">
-            <div class="col-md-4 mb-3 mb-md-0">
+            <div class="col-md-3 mb-3 mb-md-0">
+                <div class="footer-info-icon mb-2">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <h6 class="footer-info-title">Email</h6>
+                <p class="footer-info-text">
+                    <a href="mailto:fortuna.beautyy@gmail.com" class="footer-link">fortuna.beautyy@gmail.com</a>
+                </p>
+            </div>
+            <div class="col-md-3 mb-3 mb-md-0">
                 <div class="footer-info-icon mb-2">
                     <i class="bi bi-telephone"></i>
                 </div>
-                <h6 class="footer-info-title"><?php _el('Rufen Sie uns an', 'Call Us'); ?></h6>
-                <p class="footer-info-text">+49 89 66055598</p>
+                <h6 class="footer-info-title"><?php _el('Telefon', 'Phone'); ?></h6>
+                <p class="footer-info-text">01745859999<br>017611876796</p>
             </div>
-            <div class="col-md-4 mb-3 mb-md-0">
+            <div class="col-md-3 mb-3 mb-md-0">
                 <div class="footer-info-icon mb-2">
                     <i class="bi bi-geo-alt"></i>
                 </div>
-                <h6 class="footer-info-title"><?php _el('Standort', 'Location'); ?></h6>
-                <p class="footer-info-text">Kreillerstraße 13A, 81673 München</p>
+                <h6 class="footer-info-title"><?php _el('Adresse', 'Address'); ?></h6>
+                <p class="footer-info-text">
+                    Kreillerstr 13A<br>
+                    81673 München<br>
+                    <small><?php _el('(Neben dem 1Euro Shop)', '(Next to 1Euro Shop)'); ?></small><br>
+                    U-Bahn: Josephsburg
+                </p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="footer-info-icon mb-2">
                     <i class="bi bi-clock"></i>
                 </div>
                 <h6 class="footer-info-title"><?php _el('Öffnungszeiten', 'Opening Hours'); ?></h6>
                 <p class="footer-info-text">
-                    <?php _el('Mo - Sa: 09:30 - 18:30', 'Mon - Sat: 9:30 AM - 6:30 PM'); ?><br><?php _el('Sonntag: Geschlossen', 'Sunday: Closed'); ?>
+                    <?php _el('Mo - Sa: 09:00 - 19:30', 'Mon - Sat: 9:00 AM - 7:30 PM'); ?><br>
+                    <?php _el('Sonntag: Geschlossen', 'Sunday: Closed'); ?>
                 </p>
             </div>
         </div>
@@ -77,7 +103,7 @@
                 <a href="https://www.facebook.com/" target="_blank" class="footer-social">
                     <i class="bi bi-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" class="footer-social">
+                <a href="https://www.instagram.com/fortuna_munich" target="_blank" class="footer-social">
                     <i class="bi bi-instagram"></i>
                 </a>
             </div>

@@ -30,7 +30,7 @@ get_header();
                         </div>
                         <div class="contact-info-text">
                             <h6><?php _el('Rufen Sie uns an', 'Call Us'); ?></h6>
-                            <p>+49 89 66055598</p>
+                            <p>01745859999 / 017611876796</p>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@ get_header();
                         </div>
                         <div class="contact-info-text">
                             <h6><?php _el('Schreiben Sie uns', 'Email Us'); ?></h6>
-                            <p>eluxnails.munich@gmail.com</p>
+                            <p>fortuna.beautyy@gmail.com</p>
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@ get_header();
                         </div>
                         <div class="contact-info-text">
                             <h6><?php _el('Adresse', 'Address'); ?></h6>
-                            <p>Kreillerstraße 13A, 81673 München, Deutschland</p>
+                            <p>Kreillerstr 13A 81673 München ( Neben dem 1Euro Shop)</p>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@ get_header();
                         </div>
                         <div class="contact-info-text">
                             <h6><?php _el('Öffnungszeiten', 'Opening Hours'); ?></h6>
-                            <p><?php _el('Mo - Sa: 09:30 - 18:30', 'Mon - Sat: 9:30 AM - 6:30 PM'); ?><br><?php _el('Sonntag: Geschlossen', 'Sunday: Closed'); ?>
+                            <p><?php _el('Mo - Sa: 09:30 - 19:30', 'Mon - Sat: 9:00 - 19:30'); ?><br><?php _el('Sonntag: Geschlossen', 'Sunday: Closed'); ?>
                             </p>
                         </div>
                     </div>
