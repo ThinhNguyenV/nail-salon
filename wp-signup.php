@@ -47,6 +47,7 @@ if ( ! is_main_site() ) {
 }
 
 // Fix for page title.
+global $wp_query;
 $wp_query->is_404 = false;
 
 /**

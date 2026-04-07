@@ -10,28 +10,56 @@ $img = get_template_directory_uri() . '/assets/images';
 <main data-page="home">
 
     <!-- ===== Hero Section ===== -->
-    <section class="hero-section">
-        <div class="container">
+    <section class="hero-section hero-3d">
+
+        <!-- Floating 3D bottle particles (canvas layer) -->
+        <canvas id="hero-bottles-canvas" aria-hidden="true"></canvas>
+
+        <!-- Subtle animated gradient orbs -->
+        <div class="hero-orb hero-orb--1" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--2" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--3" aria-hidden="true"></div>
+
+        <div class="container hero-3d__content">
             <div class="row align-items-center">
-                <div class="col-lg-5" data-aos="fade-right">
+                <div class="col-lg-6" data-aos="fade-right">
                     <div class="hero-text">
-                        <h1><?php _el('Perfektion für Ihre Nägel – Einzigartig & Elegant', 'Perfection for Your Nails – Unique & Elegant'); ?>
-                        </h1>
-                        <p><?php _el('Bei Fortuna Beauty bieten wir Ihnen exzellente Beauty-Services in München. Unser erfahrenes Team widmet sich der Pflege Ihrer natürlichen Schönheit, damit Sie sich rundum wohlfühlen.', 'At Fortuna Beauty, we provide excellent beauty services in Munich. Our experienced team is dedicated to nurturing your natural beauty, leaving you feeling completely at ease.'); ?>
-                        </p>
-                        <a href="<?php echo home_url('/contact'); ?>"
-                            class="btn btn-hero me-2"><?php _el('Kontakt', 'Contact'); ?></a>
-                        <a href="<?php echo home_url('/prices'); ?>"
-                            class="btn btn-hero"><?php _el('Preise', 'Prices'); ?></a>
+                        <span class="hero-eyebrow"><?php _el('✦ Fortuna Beauty Munich', '✦ Fortuna Beauty Munich'); ?></span>
+                        <h1><?php _el('Perfektion für Ihre Nägel – Einzigartig & Elegant', 'Perfection for Your Nails – Unique & Elegant'); ?></h1>
+                        <p><?php _el('Bei Fortuna Beauty bieten wir Ihnen exzellente Beauty-Services in München. Unser erfahrenes Team widmet sich der Pflege Ihrer natürlichen Schönheit, damit Sie sich rundum wohlfühlen.', 'At Fortuna Beauty, we provide excellent beauty services in Munich. Our experienced team is dedicated to nurturing your natural beauty, leaving you feeling completely at ease.'); ?></p>
+                        <div class="hero-cta-row">
+                            <a href="<?php echo home_url('/contact'); ?>" class="btn btn-hero me-2"><?php _el('Kontakt', 'Contact'); ?></a>
+                            <a href="<?php echo home_url('/prices'); ?>" class="btn btn-hero"><?php _el('Preise', 'Prices'); ?></a>
+                        </div>
+                        <div class="hero-booking-row">
+                            <a href="https://www.planity.com/de-DE/fortuna-nails-81673-munchen" target="_blank" rel="noopener" class="hero-booking-link">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                <?php _el('Online Termin buchen', 'Book Appointment Online'); ?>
+                                <span class="hero-booking-arrow">→</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-7" data-aos="fade-left">
-                    <div class="hero-image">
-                        <img src="<?php echo $img; ?>/hero-salon.jpg"
-                            alt="<?php _el('Fortuna Beauty Nageldesign', 'Fortuna Beauty Nail Design'); ?>">
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+                    <!-- Hero image (restored) + floating 3D bottle overlay -->
+                    <div class="hero-image-wrap">
+                        <div class="hero-image">
+                            <img src="<?php echo $img; ?>/hero-salon.jpg"
+                                alt="<?php _el('Fortuna Beauty Nageldesign', 'Fortuna Beauty Nail Design'); ?>">
+                        </div>
+                        <!-- Floating 3D bottle — decorative overlay top-right -->
+                        <div class="hero-bottle-float" data-aos="zoom-in" data-aos-delay="400">
+                            <canvas id="hero-main-bottle" width="180" height="220"></canvas>
+                            <p class="hero-bottle-hint"><?php _el('✦ drehen ✦', '✦ rotate ✦'); ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator" aria-hidden="true">
+            <span class="hero-scroll-line"></span>
         </div>
     </section>
 
@@ -151,6 +179,7 @@ $img = get_template_directory_uri() . '/assets/images';
             </h2>
             <p><?php _el('Es gibt viele Behandlungen zur Auswahl, die Ihnen ein strahlendes Lächeln ins Gesicht zaubern werden.', 'There are many treatments to choose from that will put a radiant smile on your face.'); ?>
             </p>
+            <a href="https://www.planity.com/de-DE/fortuna-nails-81673-munchen" target="_blank" rel="noopener" class="btn btn-hero mt-4"><?php _el('✦ Jetzt online buchen', '✦ Book Online Now'); ?></a>
         </div>
     </section>
 
@@ -178,6 +207,134 @@ $img = get_template_directory_uri() . '/assets/images';
                     <div class="nail3d-canvas-wrap">
                         <canvas id="nail3d-canvas" width="480" height="480"></canvas>
                         <span class="nail3d-hint">✦ drag to rotate ✦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3D Nail Art Visualizer ===== -->
+    <section class="nav-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-subtitle"><?php _el('INTERAKTIVER SIMULATOR', 'INTERACTIVE SIMULATOR'); ?></span>
+                <h2 class="section-title"><?php _el('Finde deinen perfekten Look', 'Find Your Perfect Look'); ?></h2>
+                <p class="nav-intro"><?php _el('Wähle Nagelform, Farbe und Finish — und sieh es live in 3D.', 'Choose nail shape, color and finish — see it live in 3D.'); ?></p>
+            </div>
+
+            <div class="row g-4 align-items-start">
+
+                <!-- Controls Column -->
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="nav-controls">
+
+                        <!-- Shape picker -->
+                        <div class="nav-control-group">
+                            <p class="nav-label"><?php _el('Nagelform', 'Nail Shape'); ?></p>
+                            <div class="nav-shape-grid">
+                                <button class="nav-shape-btn active" data-shape="square">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="4" y="4" width="32" height="48" rx="4" fill="currentColor"/></svg>
+                                    <span><?php _el('Square', 'Square'); ?></span>
+                                </button>
+                                <button class="nav-shape-btn" data-shape="squoval">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="4" y="20" width="32" height="32" rx="4" fill="currentColor"/><ellipse cx="20" cy="20" rx="16" ry="16" fill="currentColor"/></svg>
+                                    <span><?php _el('Squoval', 'Squoval'); ?></span>
+                                </button>
+                                <button class="nav-shape-btn" data-shape="oval">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="4" y="28" width="32" height="24" rx="4" fill="currentColor"/><ellipse cx="20" cy="28" rx="16" ry="22" fill="currentColor"/></svg>
+                                    <span><?php _el('Oval', 'Oval'); ?></span>
+                                </button>
+                                <button class="nav-shape-btn" data-shape="almond">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="8" y="32" width="24" height="20" rx="4" fill="currentColor"/><ellipse cx="20" cy="28" rx="12" ry="24" fill="currentColor"/></svg>
+                                    <span><?php _el('Almond', 'Almond'); ?></span>
+                                </button>
+                                <button class="nav-shape-btn" data-shape="stiletto">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="10" y="36" width="20" height="16" rx="4" fill="currentColor"/><polygon points="20,2 32,36 8,36" fill="currentColor"/></svg>
+                                    <span><?php _el('Stiletto', 'Stiletto'); ?></span>
+                                </button>
+                                <button class="nav-shape-btn" data-shape="coffin">
+                                    <svg viewBox="0 0 40 56" width="28" height="38"><rect x="6" y="36" width="28" height="16" rx="4" fill="currentColor"/><polygon points="6,36 12,4 28,4 34,36" fill="currentColor"/></svg>
+                                    <span><?php _el('Coffin', 'Coffin'); ?></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Color picker -->
+                        <div class="nav-control-group">
+                            <p class="nav-label"><?php _el('Farbe', 'Color'); ?></p>
+                            <div class="nav-color-palette">
+                                <?php
+                                $colors = [
+                                    ['#d68c96','Rose Pink'],['#c0392b','Red Rouge'],['#8e44ad','Violet'],
+                                    ['#e67e22','Coral'],['#2c3e50','Midnight'],['#f9ca24','Gold'],
+                                    ['#ffffff','Blanc'],['#1a1a1a','Noir'],['#3498db','Blue Sky'],
+                                    ['#2ecc71','Mint'],['#fd79a8','Hot Pink'],['#b2bec3','Greige'],
+                                    ['#a29bfe','Lavender'],['#e17055','Terracotta'],['#00b894','Emerald'],
+                                ];
+                                foreach ($colors as $i => $c): ?>
+                                <div class="nav-color-dot <?php echo $i===0?'active':''; ?>"
+                                     data-color="<?php echo $c[0]; ?>"
+                                     data-name="<?php echo $c[1]; ?>"
+                                     style="background:<?php echo $c[0]; ?>;<?php echo $c[0]==='#ffffff'?'border-color:rgba(0,0,0,0.15);':''; ?>"
+                                     title="<?php echo $c[1]; ?>"></div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="nav-color-name" id="nav-color-name">Rose Pink</div>
+                            <!-- Custom color input -->
+                            <div class="nav-custom-color">
+                                <input type="color" id="nav-custom-hex" value="#d68c96" title="Custom color">
+                                <label for="nav-custom-hex"><?php _el('Eigene Farbe wählen', 'Pick custom color'); ?></label>
+                            </div>
+                        </div>
+
+                        <!-- Finish picker -->
+                        <div class="nav-control-group">
+                            <p class="nav-label"><?php _el('Finish', 'Finish'); ?></p>
+                            <div class="nav-finish-row">
+                                <button class="nav-finish-btn active" data-finish="glossy">
+                                    <span class="nav-finish-swatch nav-finish-swatch--glossy"></span>
+                                    <?php _el('Glänzend', 'Glossy'); ?>
+                                </button>
+                                <button class="nav-finish-btn" data-finish="matte">
+                                    <span class="nav-finish-swatch nav-finish-swatch--matte"></span>
+                                    <?php _el('Matt', 'Matte'); ?>
+                                </button>
+                                <button class="nav-finish-btn" data-finish="glitter">
+                                    <span class="nav-finish-swatch nav-finish-swatch--glitter"></span>
+                                    <?php _el('Glitzer', 'Glitter'); ?>
+                                </button>
+                                <button class="nav-finish-btn" data-finish="chrome">
+                                    <span class="nav-finish-swatch nav-finish-swatch--chrome"></span>
+                                    <?php _el('Chrome', 'Chrome'); ?>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Art overlay -->
+                        <div class="nav-control-group">
+                            <p class="nav-label"><?php _el('Nail Art', 'Nail Art'); ?></p>
+                            <div class="nav-art-row">
+                                <button class="nav-art-btn active" data-art="none"><?php _el('Kein', 'None'); ?></button>
+                                <button class="nav-art-btn" data-art="gems"><?php _el('Steine', 'Gems'); ?></button>
+                                <button class="nav-art-btn" data-art="french"><?php _el('French', 'French'); ?></button>
+                                <button class="nav-art-btn" data-art="glitter-tip"><?php _el('Glitter Tip', 'Glitter Tip'); ?></button>
+                            </div>
+                        </div>
+
+                        <a href="<?php echo home_url('/contact'); ?>" class="nav-book-btn">
+                            <?php _el('Termin für diesen Look buchen', 'Book appointment for this look'); ?> →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3D Viewer Column -->
+                <div class="col-lg-8" data-aos="fade-left" data-aos-delay="100">
+                    <div class="nav-viewer-wrap">
+                        <canvas id="nav-canvas" width="680" height="480"></canvas>
+                        <div class="nav-viewer-badge" id="nav-state-badge">Square · Rose Pink · Glossy</div>
+                        <div class="nav-viewer-hint">
+                            <?php _el('✦ Maus ziehen zum Drehen ✦', '✦ Drag to rotate ✦'); ?>
+                        </div>
                     </div>
                 </div>
             </div>

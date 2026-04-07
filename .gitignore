@@ -1,0 +1,50 @@
+# ========================================================
+# CÁC FILE BACKUP & MIGRATION (Khắc phục lỗi file quá nặng)
+# ========================================================
+wp-content/ai1wm-backups/
+wp-content/plugins/all-in-one-wp-migration/storage/
+*.wpress
+*.sql
+*.tar
+*.zip
+*.gz
+*.rar
+
+# ========================================================
+# BẢO MẬT & CẤU HÌNH HỆ THỐNG
+# ========================================================
+wp-config.php
+.env
+.htaccess
+
+# ========================================================
+# WORDPRESS UPLOADS & CACHE
+# ========================================================
+# Thường không nên push thư mục uploads (ảnh/video) lên Git vì rất nặng
+# Nếu bạn MUỐN giữ ảnh trên Git, hãy thêm dấu # trước dòng bên dưới để comment nó lại
+wp-content/uploads/
+
+# Các thư mục cache của plugin
+wp-content/cache/
+wp-content/w3tc-config/
+
+# ========================================================
+# LOG FILES
+# ========================================================
+*.log
+debug.log
+error_log
+
+# ========================================================
+# MÔI TRƯỜNG NODE/FRONTEND (Nếu bạn có dùng build tool)
+# ========================================================
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ========================================================
+# FILE RÁC CỦA HỆ ĐIỀU HÀNH
+# ========================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
